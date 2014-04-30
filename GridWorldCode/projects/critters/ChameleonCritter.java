@@ -58,4 +58,14 @@ public class ChameleonCritter extends Critter
         setDirection(getLocation().getDirectionToward(loc));
         super.makeMove(loc);
     }
+
+     private void darken(){
+    	Color c = getColor(); //returns the color of this actor 
+        int red = (int) (c.getRed() * (1 - dark));
+        int green = (int) (c.getGreen() * (1 - dark));
+        int blue = (int) (c.getBlue() * (1 - dark));
+
+        setColor(new Color(red, green, blue)); //sets the color of the actor 
+    }
+
 }
