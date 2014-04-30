@@ -22,6 +22,7 @@ import info.gridworld.grid.Location;
 
 import java.util.ArrayList;
 
+import java.awt.Color;//For darkening color of critter
 /**
  * A <code>ChameleonCritter</code> takes on the color of neighboring actors as
  * it moves through the grid. <br />
@@ -37,6 +38,11 @@ public class ChameleonCritter extends Critter
     {
         int n = actors.size();
         if (n == 0)
+            Color c = getColor();
+            int red = (int)( c.getRed() * 0.95);
+            int green = (int)(c.getGreen()*0.95);
+            int blue = (int)(c.getBlue() * 0.95);
+            setColor(new Color(red,green,blue));
             return;
         int r = (int) (Math.random() * n);
 
