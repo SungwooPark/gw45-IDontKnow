@@ -31,7 +31,7 @@ public class SparseBoundedGrid extends AbstractGrid<E>{
     public E remove(Location loc){
         int row = loc.getRow();
         SparseGridNode temp = sparseArray.get(row);
-        if (temp.getInt() == loc.getCol()){
+        if (temp.getColValue() == loc.getCol()){
             sparseArray.set(0,temp.sgetNext());
         }else{
             while (temp.getNext() != null){
@@ -43,5 +43,19 @@ public class SparseBoundedGrid extends AbstractGrid<E>{
                 temp = temp.getNext();
             }
         }
+    }
+
+    public ArrayList<Location> getOccupiedLocations(){
+        ArrayList<Location> locations = new ArrayList<Location>();
+        for (int i=0,i<sparseArray.size();i++){
+            if (sparseArray.get(i) != null){
+                SparseGridNode temp = sparseArray.get(i);
+                while (temp != null){
+                    locations.add(new Location(i,temp.getColValue()));
+                    temp.getNext();
+                }
+            }
+        }
+        return locations;
     }
 }

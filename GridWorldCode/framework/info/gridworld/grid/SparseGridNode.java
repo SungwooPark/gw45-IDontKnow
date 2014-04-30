@@ -17,7 +17,7 @@ public class SparseGridNode{
         occupant = s;
      }
 
-     public int getInt(){
+     public int getColValue(){
         return col;
      }
 
