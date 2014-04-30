@@ -1,0 +1,46 @@
+
+sydney caputo 
+git@github.com:iyw03211/gw45-IDontKnow.git
+APCS pd 9
+HW## 34 GridWorld, Part 4
+2014-04-29    
+
+Do you know? 7-9
+
+Set 7
+1.act(), getActor(), procesActors(ArrayList<Actor> actors), getMoveLocations(), selectMoveLocation(), makeMove(Location loc)
+2.getActor(), procesActors(ArrayList<Actor> actors), getMoveLocations(), selectMoveLocation(), makeMove(Location loc)
+3 Yes you should override the getActors method if you want to look at actors on the grid that are not directly neighboring the critter. 
+4 Change their color, make them move, eat them 
+5 selectMoveLocation() Selects the location for the next move. Implemented to randomly pick one of the possible locations, or to return the current location if locs has size 0 , getMoveLocation() Gets a list of possible locations for the next move, makeMove() Moves this critter to the given location loc, or removes this critter from its grid if loc is null. 
+6 Because the Critter class does not need a constructor. It does not have any attributes that it needs to define, instead it controls the other actors
+
+Set 8
+1 Because Chameleon Class overrides processActors method and makeMove methods that are 
+2Because there is only one thing that makeMove method of Chameleon class have to do in addition to what makeMove method of Critter class does.
+3 Add a statement that constructs a flower class in makeMove method of ChameleonCritter class.
+4 Because getActors method can be used in ChameleonCritter class without any modification.
+5 Actor class
+6 Through getGrid() method that is inherited from actor class.
+
+Set 9
+1 Because processActors() method can be used in CrabCritter class without a modification.
+2 CrabCritter looks for an object that is in front, left-front, or right-front. Those are only objects that CrabCritter can eat. Therefore, it cannot eat all of its neighboring objects.
+3 Because it only looks for objects in front, left-front, or right-front.
+4 (4,3), (4,4), (4,5)
+5 They are similar in that they both use getMoveLocations to get an ArrayList of all possible move locations. They are different in that their “possible” move locations are different.
+6 When location that it is about to move is invalid.
+7 Because of the restriction inherited from the Critter class.
+
+
+A new type of Critter has appeared on the scene:
+Hungry Critter Specs:
+<Description of what this subclass of Critter can do, and how it does it. Adhere as closely as possible to prior examples shown in the GridWorld packet.>
+Since Critters are able to eat the other actors, this critter will be taking advantage of that. It is a very hungry Critter and as it eats the actors in its neighborhood (the box around the Critter) it's color will begin to darken. This HungryCritter is very greedy though, so once it eats too many actors it will die. 
+_______Critter Test Cases:
+<Precise descriptions of expected behavior on specific triggers (eg, method inputs). Adhere as closely as possible to prior examples shown in the GridWorld packet.>
+To darken it's color as it eats more actors darken();
+to die once it has eaten too many actors die();
+override the makeMove(Location loc) to make it so that the HungryCritter will try to find actors and will move closer to them and then eat them. 
+
+
