@@ -22,7 +22,10 @@ MedusaCritter Specs:
      
      import info.gridworld.grid.Location; 
      import java.util.ArrayList; 
- 
+     
+     public ArrayList<E> getNeighbors(Location loc) {
+	 
+     }
 /** 
  * A Critter is an actor that moves through its world, processing 
  * other actors in some way and then moving to a new location. 
@@ -54,6 +57,7 @@ MedusaCritter Specs:
  */ 
  public ArrayList<Actor> getActors() 
  { 
+     //want to get actors that are only ahead of this critter 
      return getGrid().getNeighbors(getLocation()); 
  } 
 
@@ -66,11 +70,18 @@ MedusaCritter Specs:
  * @param actors the actors to be processed 
  */ 
      public void processActors(ArrayList<Actor> actors) { 
-	 for (Actor a : actors) 
-	     { 
-		 if (!(a instanceof Rock) && !(a instanceof Critter)) 
-		     a.removeSelfFromGrid(); 
-	     } 
+	  Rock r = new Rock();
+	  int dir = getDirection();
+               
+                        for (Actor a: actors)
+                        {
+                                if (a.getDirection() == (dir - 180) || (a.getDirection() == (dir + 180)))
+                                {
+                                        Location loc = a.getLocation();
+                                        a.removeSelfFromGrid();
+                                        r.putSelfInGrid(getGrid(), loc);
+                                }
+                        }
      } 
  
  
@@ -82,6 +93,7 @@ MedusaCritter Specs:
  * @return a list of possible locations for the next move 
  */ 
      public ArrayList<Location> getMoveLocations() {
+	 //want to get locations of bugs that are 
 	 return getGrid().getEmptyAdjacentLocations(getLocation()); 
      } 
  
