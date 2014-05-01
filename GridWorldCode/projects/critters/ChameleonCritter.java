@@ -32,18 +32,24 @@ public class ChameleonCritter extends Critter
 {
     /**
      * Randomly selects a neighbor and changes this critter's color to be the
-     * same as that neighbor's. If there are no neighbors, no action is taken.
+     * same as that neighbor's.
+if no neighbors, the color of the ChameleonCritter will darken (like a flower)
+^ part  4 exercise 1
      */
     public void processActors(ArrayList<Actor> actors)
     {
         int n = actors.size();
-        if (n == 0)
-            Color c = getColor();
-            int red = (int)( c.getRed() * 0.95);
-            int green = (int)(c.getGreen()*0.95);
-            int blue = (int)(c.getBlue() * 0.95);
-            setColor(new Color(red,green,blue));
-            return;
+        if (n == 0) {
+	    darken(); 
+	    return;
+	}
+	/*
+	Color c = getColor();//gets own color
+	int red = (int)( c.getRed() * 0.95);
+	int green = (int)(c.getGreen()*0.95);
+	int blue = (int)(c.getBlue() * 0.95);
+	setColor(new Color(red,green,blue));
+	*/
         int r = (int) (Math.random() * n);
 
         Actor other = actors.get(r);
@@ -60,12 +66,12 @@ public class ChameleonCritter extends Critter
     }
 
      private void darken(){
-    	Color c = getColor(); //returns the color of this actor 
-        int red = (int) (c.getRed() * (1 - dark));
-        int green = (int) (c.getGreen() * (1 - dark));
-        int blue = (int) (c.getBlue() * (1 - dark));
+    	Color c = getColor(); //color of itself
+        int red = (int) (c.getRed() * 0.95);
+        int green = (int) (c.getGreen() * 0.95);
+        int blue = (int) (c.getBlue() * 0.95);
 
-        setColor(new Color(red, green, blue)); //sets the color of the actor 
+        setColor(new Color(red, green, blue)); //sets the color of itself
     }
 
 }
