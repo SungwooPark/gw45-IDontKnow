@@ -15,8 +15,11 @@ public class QuickCrab extends CrabCritter {
 	for (int d : directions) {
 	    int dir = getDirection() + d;
 	    Location neighborLoc = loc.getAdjacentLocation(dir);
-	    if (gr.isValid(neighborLoc) && gr.get(neighborLoc) == null)
-		locs.add(neighborLoc.getAdjacentLocation(dir));
+	    if (gr.isValid(neighborLoc) && gr.get(neighborLoc) == null) {
+		Location two = neighborLoc.getAdjacentLocation(dir);
+		if (gr.isValid(two))
+		    locs.add(two);
+	    }
 	}
 	return locs;
     }
