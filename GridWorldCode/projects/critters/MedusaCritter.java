@@ -1,41 +1,3 @@
-/*****************************************************************
- * Sydney Caputo IDontKnow
- * APCS pd 9
- * HW35 -- GridWorld, Part 4
- * 2014-05-01
- *
- * class MeduseCritter
- *
- * BEACUASE:
-We thought it was a cool and interesting Critter. We liked the idea of changing and actor to a rock, and also the challenge of that. It was a very interesting class that someone designed! 
- * 
- *
- * SPECIFICATIONS:
- MedusaCritter Specs:
-  -MedusaCritter can turn the actor in front of it into a rock by removing it and spawning a rock object on the location.
-  -Class MedusaCritter inherits all methods and variables/constants of superclasses Critter and Actor. Below are overwritten methods
-
-  -processActors(Actor a){//Overwrites processActors() of superclass Critter
-  If the actorâ€™s direction is the direction of the medusaâ€™s + 180 && the actor is directly in front of the medusa (basically, eye contact and one space away), the actor in front will be removed and replaced by a rock UNLESS it is a Critter or Rock
-  }
-  -ArrayList<Actor> getActors(){//Overwrites getActors() of superclass Critter
-  Only obtains critter directly in front for processing. Dependent on direction of MedusaCritter executing code. Returns ArrayList consisting of all objects one space ahead
- *
- * TEST CASES:
- * T2-There is a non-rock-non-critter actor on the tile ahead but not facing the MedusaCritter: act() will not do anything to the actor. The MedusaCritter will then move as specified by the Critter class
-T3-There is a non-rock-non-critter actor on the tile to the right but not facing the MedusaCritter: act() will not do anything to the actor. The MedusaCritter will then move as specified by the Critter class
-T4-There is a rock/critter actor on the tile ahead: act() will not do anything to the actor. The MedusaCritter will then move as specified by the Critter class
-T5-All other scenarios: MedusaCritter will behave as a normal Critter
-
- *
- * ERRATA:
- * <any extra test cases, any developer decisions, or
- * other judgment calls your team made to get the class working...>
- *****************************************************************/
-
-
- 
- 
 import  info.gridworld.actor; 
      
 import info.gridworld.grid.Location; 
@@ -43,11 +5,8 @@ import java.util.ArrayList;
 public class MedusaCritter extends Critter {
 
  
-
      
-    public ArrayList<E> getNeighbors(Location loc) {
-	 
-    }
+
     //medusa critter extends critter, so if a method is not changed, it does not have to be rewritten
     /** 
      * A Critter is an actor that moves through its world, processing 
@@ -59,7 +18,7 @@ public class MedusaCritter extends Critter {
     /** 
      * A critter acts by getting a list of other actors, processing that list, getting locations to move to, 
      * selecting one of them, and moving to the selected location. 
-     
+    */
     public void act() {
 	if (getGrid() == null) 
 	    return; 
@@ -68,21 +27,44 @@ public class MedusaCritter extends Critter {
 	ArrayList<Location> moveLocs = getMoveLocations(); 
 	Location loc = selectMoveLocation(moveLocs); 
 	makeMove(loc); 
-    } 
-    */
- 
- 
-    /** 
-     * Gets the actors for processing. Implemented to return the actors that occupy neighboring grid locations. 
-     * Override this method in subclasses to look elsewhere for actors to process. 
- * Postcondition: The state of all actors is unchanged. 
- * @return a list of actors that this critter wishes to process 
- */ 
- public ArrayList<Actor> getActors() 
- { 
-     //want to get actors that are only ahead of this critter 
-     return getGrid().getNeighbors(getLocation()); 
- } 
+    }  
+    
+    public ArrayList<Actors> getActors(){
+        ArrayList<Actors> actors = new ArrayList<Actors>();
+        if (getDirection() == 0){
+            Location loc = new Lacation(getLocation.getRow()-1,getLocation().getCol());
+            if (isValid(loc){
+                actors.add(loc);
+            }else{
+                return null;
+            }
+        }
+        if else (getDirection() == 90){
+            Location loc = new Lacation(getLocation.getRow(),getLocation().getCol()+1);
+            if (isValid(loc){
+                actors.add(loc);
+            }else{
+                return null;
+            }
+        }
+        if (getDirection() == 180){
+            Location loc = new Lacation(getLocation.getRow()+1,getLocation().getCol());
+            if (isValid(loc){
+                actors.add(loc);
+            }else{
+                return null;
+            }
+        }
+        if (getDirection() == 270){
+            Location loc = new Lacation(getLocation.getRow(),getLocation().getCol()-1);
+            if (isValid(loc){
+                actors.add(loc);
+            }else{
+                return null;
+            }
+        }
+        return actors;
+    }
 
 /** 
  * Processes the elements of actors. New actors may be added to empty locations. 
@@ -96,62 +78,15 @@ public class MedusaCritter extends Critter {
 	  Rock r = new Rock();
 	  int dir = getDirection();
                
-                        for (Actor a: actors)
-                        {
+                for (Actor a: actors)
+                        {   if (!(a instanceof Rock) || !(a instanceof Critter)){//Makes sure an actor is not a rock or critter
                                 if (a.getDirection() == (dir - 180) || (a.getDirection() == (dir + 180)))
                                 {
                                         Location loc = a.getLocation();
                                         a.removeSelfFromGrid();
                                         r.putSelfInGrid(getGrid(), loc);
                                 }
+                            }
                         }
      } 
- 
- 
- /** 
- * Gets a list of possible locations for the next move. These locations must be valid in the grid of this critter. 
- * Implemented to return the empty neighboring locations. Override this method in subclasses to look 
- * elsewhere for move locations. 
- * Postcondition: The state of all actors is unchanged. 
- * @return a list of possible locations for the next move 
- */ 
-     public ArrayList<Location> getMoveLocations() {
-	 //want to get locations of bugs that are 
-	 return getGrid().getEmptyAdjacentLocations(getLocation()); 
-     } 
- 
- 
- /** 
- * Selects the location for the next move. Implemented to randomly pick one of the possible locations, 
- * or to return the current location if locs has size 0. Override this method in subclasses that 
- * have another mechanism for selecting the next move location. 
- * Postcondition: (1) The returned location is an element of locs, this critter’s current location, or null. 
- * (2) The state of all actors is unchanged. 
- * @param locs the possible locations for the next move 
- * @return the location that was selected for the next move 
- */ 
-     public Location selectMoveLocation(ArrayList<Location> locs) {
-	 int n = locs.size(); 
-	 if (n == 0) 
-	     return getLocation(); 
-	 int r = (int) (Math.random() * n); 
-	 return locs.get(r); 
-     }
-
-/** 
- * Moves this critter to the given location loc, or removes this critter from its grid if loc is null. 
- * An actor may be added to the old location. If there is a different actor at location loc, that actor is 
- * removed from the grid. Override this method in subclasses that want to carry out other actions 
- * (for example, turning this critter or adding an occupant in its previous location). 
- * Postcondition: (1) getLocation() == loc. 
- * (2) The state of all actors other than those at the old and new locations is unchanged. 
- * @param loc the location to move to 
- */ 
-     public void makeMove(Location loc) {
-	 if (loc == null) 
-	     removeSelfFromGrid(); 
-	 else 
-	     moveTo(loc); 
-     } 
-
 }
