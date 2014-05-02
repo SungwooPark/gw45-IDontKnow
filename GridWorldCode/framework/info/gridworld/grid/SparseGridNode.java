@@ -1,3 +1,5 @@
+package info.gridworld.grid;
+
 public class SparseGridNode{
      private Object occupant;
      private int col;
@@ -23,5 +25,9 @@ public class SparseGridNode{
 
      public SparseGridNode getNext(){
         return next;
+     }
+
+     public void setNext(SparseGridNode s){
+        next = s;
      }
 }

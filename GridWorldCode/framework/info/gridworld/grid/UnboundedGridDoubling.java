@@ -1,8 +1,12 @@
-public class UnboundedGridDoubling<E> extends AbstractGrid<E>{
-    private Objects[][] occupantArray;
+package info.gridworld.grid;
 
-    public UnboundedGridDobuling(){
-        occupantArray = new Objects[16][16];
+import java.util.ArrayList;
+
+public class UnboundedGridDoubling<E> extends AbstractGrid<E>{
+    private Object [][] occupantArray;
+
+    public UnboundedGridDoubling(){
+        occupantArray = new Object[16][16];
     }
  
     public int getNumRows(){
@@ -20,15 +24,15 @@ public class UnboundedGridDoubling<E> extends AbstractGrid<E>{
     public E put(Location loc, E obj){
         //Efficiency(Within Bound): O(1)
         if (loc.getRow() < getNumRows() && loc.getCol() < getNumCols()){
-            E toReturn = occupantArray[loc.getRow()][loc.getCol()];
+            E toReturn = (E)occupantArray[loc.getRow()][loc.getCol()];
             occupantArray[loc.getRow()][loc.getCol()] = obj;
             return toReturn;
         //Efficiency(Out of Bound): O(n^2)
         }else{
-            Objects[][] temp = new Objects[getNumRows()*2][getNumCols()*2];
-            for (int i=0;i<occupantArray.lenth;i++){
-                for (int j=0;j<occupantArray[i].length;j){
-                    temp[i][j] = occupantArray[i][j]
+            Object[][] temp = new Object[getNumRows()*2][getNumCols()*2];
+            for (int i=0;i<occupantArray.length;i++){
+                for (int j=0;j<occupantArray[i].length;j++){
+                    temp[i][j] = occupantArray[i][j];
                 }
             }
             occupantArray = temp;
@@ -38,14 +42,14 @@ public class UnboundedGridDoubling<E> extends AbstractGrid<E>{
     }
 
     public E remove(Location loc){
-        E toReturn = occupantArray[loc.getRow()][loc.getCol()];
+        E toReturn = (E)occupantArray[loc.getRow()][loc.getCol()];
         occupantArray[loc.getRow()][loc.getCol()] = null;
         return toReturn;
     }
 
     //Efficiency: O(1)
     public E get(Location loc){
-        return occupantArray[loc.getRow()][loc.getCol()];
+        return (E)occupantArray[loc.getRow()][loc.getCol()];
     }
 
     public ArrayList<Location> getOccupiedLocations(){
@@ -53,7 +57,7 @@ public class UnboundedGridDoubling<E> extends AbstractGrid<E>{
         for (int i=0;i<occupantArray.length;i++){
             for (int j=0;j<occupantArray[i].length;j++){
                 if (occupantArray[i][j] != null){
-                    Location loc = new Location(i,r);
+                    Location loc = new Location(i,j);
                     locations.add(loc);
                 }
             }
