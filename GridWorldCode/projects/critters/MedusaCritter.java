@@ -1,3 +1,37 @@
+*****************************************************************
+ * Team IDontKnow
+ * APCS pd 9
+ * HW35 -- GridWorld, Part 4
+ * 2014-05-01
+ *
+ * class MeduseCritter
+ *
+ * BEACUASE:
+ We thought it was a cool and interesting Critter. We liked the idea of changing and actor to a rock, and also the challenge of that. It was a very interesting class that someone designed! 
+ * 
+ *
+ * SPECIFICATIONS:
+ MedusaCritter Specs:
+ MedusaCritter can turn the actor in front of it into a rock by removing it and spawning a rock object on the location.
+ Class MedusaCritter inherits all methods and variables/constants of superclasses Critter and Actor. Below are overwritten methods
+ 
+ processActors(Actor a){//Overwrites processActors() of superclass Critter
+ If the actorâ€™s direction is the direction of the medusaâ€™s + 180 && the actor is directly in front of the medusa (basically, eye contact and one space away), the actor in front will be removed and replaced by a rock UNLESS it is a Critter or Rock
+   }
+ ArrayList<Actor> getActors(){//Overwrites getActors() of superclass Critter
+ Only obtains critter directly in front for processing. Dependent on direction of MedusaCritter executing code. Returns ArrayList consisting of all objects one space ahead
+ *
+ * TEST CASES:
+ * T2-There is a non-rock-non-critter actor on the tile ahead but not facing the MedusaCritter: act() will not do anything to the actor. The MedusaCritter will then move as specified by the Critter class
+ T3-There is a non-rock-non-critter actor on the tile to the right but not facing the MedusaCritter: act() will not do anything to the actor. The MedusaCritter will then move as specified by the Critter class
+ T4-There is a rock/critter actor on the tile ahead: act() will not do anything to the actor. The MedusaCritter will then move as specified by the Critter class
+ T5-All other scenarios: MedusaCritter will behave as a normal Critter
+ *
+ * ERRATA:
+ * <any extra test cases, any developer decisions, or
+ * other judgment calls your team made to get the class working...>
+*****************************************************************/
+
 import  info.gridworld.actor; 
      
 import info.gridworld.grid.Location; 
