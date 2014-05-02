@@ -31,7 +31,7 @@
  * <any extra test cases, any developer decisions, or
  * other judgment calls your team made to get the class working...>
 *****************************************************************/
-
+import info.gridworld.actor.Rock;
 import info.gridworld.actor.Actor; 
 import info.gridworld.grid.Grid;     
 import info.gridworld.grid.Location; 
@@ -61,45 +61,17 @@ public class MedusaCritter extends Critter {
 	makeMove(loc); 
     }  
     */
-
+    //gets actor in front if there is 1
+    //used CrabCritter's getLocationsInDirections to help
     public ArrayList<Actor> getActors(){
         ArrayList<Actor> actors = new ArrayList<Actor>();
-        if (getDirection() == 0){
-            Location loc = new Location(getLocation.getRow()-1,getLocation().getCol());
-	    if (isValid(loc)){
-                actors.add(loc);
-            }
-	    else{
-                return null;
-            }
-        }
-	else if (getDirection() == 90){
-            Location loc = new Location(getLocation.getRow(),getLocation().getCol()+1);
-	    if (isValid(loc)){
-                actors.add(loc);
-            }
-	    else{
-                return null;
-            }
-        }
-        else if (getDirection() == 180){
-            Location loc = new Location(getLocation.getRow()+1,getLocation().getCol());
-	    if (isValid(loc)){
-                actors.add(loc);
-            }
-	    else{
-                return null;
-            }
-        }
-	else if (getDirection() == 270){
-            Location loc = new Location(getLocation.getRow(),getLocation().getCol()-1);
-            if (isValid(loc)){
-                actors.add(loc);
-            }
-	    else{
-                return null;
-            }
-        }
+	Grid gr = getGrid();
+	Location loc = getLocation();
+	Location neighbor = loc.getAdjacentLocation(getDirection());
+	//b/c if in front, it would be the same direction 
+	Actor a = getGrid().get(neighbor);//compiler wouldn't allow gr.get(neighbor)??? 
+	if (gr.isValid(neighbor) && a != null)
+	    actors.add(a);
         return actors;
     }
 
@@ -115,15 +87,15 @@ public class MedusaCritter extends Critter {
 	Rock r = new Rock();
 	int dir = getDirection();
                
-	for (Actor a: actors)
- {   if (!(a instanceof Rock) || !(a instanceof Critter)){//Makes sure an actor is not a rock or critter
-		    if (a.getDirection() == (dir - 180) || (a.getDirection() == (dir + 180)))
-			{
-			    Location loc = a.getLocation();
-			    a.removeSelfFromGrid();
-			    r.putSelfInGrid(getGrid(), loc);
-			}
-		}
+	for (Actor a: actors) {
+	    if (!(a instanceof Rock) || !(a instanceof Critter)){
+		//Makes sure an actor is not a rock or critter
+		//if (a.getDirection() == (dir - 180) || (a.getDirection() == (dir + 180)))	{
+		Location loc = a.getLocation();
+		a.removeSelfFromGrid();
+		r.putSelfInGrid(getGrid(), loc);
 	    }
-    } 
-}
+	}
+    }
+} 
+//}
