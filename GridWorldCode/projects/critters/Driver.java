@@ -12,6 +12,7 @@ public class Driver {
 	world.add(new Location(3,6), new Rock());
 	world.add(new Location(5,7), new KingCrab());
 	world.add(new Location(4,4), new Flower());
+	world.add(new Location(1,1), new ChameleonKid());
 	world.show();
     }
 }

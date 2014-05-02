@@ -1,4 +1,4 @@
-*****************************************************************
+/*****************************************************************
  * Team IDontKnow
  * APCS pd 9
  * HW35 -- GridWorld, Part 4
@@ -12,11 +12,11 @@
  *
  * SPECIFICATIONS:
  MedusaCritter Specs:
- MedusaCritter can turn the actor in front of it into a rock by removing it and spawning a rock object on the location.
+ MedusaCritter can turn the actor in FRONT of it into a rock by removing it and spawning a rock object on the location.
  Class MedusaCritter inherits all methods and variables/constants of superclasses Critter and Actor. Below are overwritten methods
  
  processActors(Actor a){//Overwrites processActors() of superclass Critter
- If the actorâ€™s direction is the direction of the medusaâ€™s + 180 && the actor is directly in front of the medusa (basically, eye contact and one space away), the actor in front will be removed and replaced by a rock UNLESS it is a Critter or Rock
+ If the actor's direction is the direction of the medusaâ€™s + 180 && the actor is directly in front of the medusa (basically, eye contact and one space away), the actor in front will be removed and replaced by a rock UNLESS it is a Critter or Rock
    }
  ArrayList<Actor> getActors(){//Overwrites getActors() of superclass Critter
  Only obtains critter directly in front for processing. Dependent on direction of MedusaCritter executing code. Returns ArrayList consisting of all objects one space ahead
@@ -32,14 +32,12 @@
  * other judgment calls your team made to get the class working...>
 *****************************************************************/
 
-import  info.gridworld.actor; 
-     
+import info.gridworld.actor.Actor; 
+import info.gridworld.grid.Grid;     
 import info.gridworld.grid.Location; 
 import java.util.ArrayList; 
+import info.gridworld.actor.Critter;
 public class MedusaCritter extends Critter {
-
- 
-     
 
     //medusa critter extends critter, so if a method is not changed, it does not have to be rewritten
     /** 
@@ -52,7 +50,7 @@ public class MedusaCritter extends Critter {
     /** 
      * A critter acts by getting a list of other actors, processing that list, getting locations to move to, 
      * selecting one of them, and moving to the selected location. 
-    */
+    
     public void act() {
 	if (getGrid() == null) 
 	    return; 
@@ -62,38 +60,43 @@ public class MedusaCritter extends Critter {
 	Location loc = selectMoveLocation(moveLocs); 
 	makeMove(loc); 
     }  
-    
-    public ArrayList<Actors> getActors(){
-        ArrayList<Actors> actors = new ArrayList<Actors>();
+    */
+
+    public ArrayList<Actor> getActors(){
+        ArrayList<Actor> actors = new ArrayList<Actor>();
         if (getDirection() == 0){
-            Location loc = new Lacation(getLocation.getRow()-1,getLocation().getCol());
-            if (isValid(loc){
+            Location loc = new Location(getLocation.getRow()-1,getLocation().getCol());
+	    if (isValid(loc)){
                 actors.add(loc);
-            }else{
+            }
+	    else{
                 return null;
             }
         }
-        if else (getDirection() == 90){
-            Location loc = new Lacation(getLocation.getRow(),getLocation().getCol()+1);
-            if (isValid(loc){
+	else if (getDirection() == 90){
+            Location loc = new Location(getLocation.getRow(),getLocation().getCol()+1);
+	    if (isValid(loc)){
                 actors.add(loc);
-            }else{
+            }
+	    else{
                 return null;
             }
         }
-        if (getDirection() == 180){
-            Location loc = new Lacation(getLocation.getRow()+1,getLocation().getCol());
-            if (isValid(loc){
+        else if (getDirection() == 180){
+            Location loc = new Location(getLocation.getRow()+1,getLocation().getCol());
+	    if (isValid(loc)){
                 actors.add(loc);
-            }else{
+            }
+	    else{
                 return null;
             }
         }
-        if (getDirection() == 270){
-            Location loc = new Lacation(getLocation.getRow(),getLocation().getCol()-1);
-            if (isValid(loc){
+	else if (getDirection() == 270){
+            Location loc = new Location(getLocation.getRow(),getLocation().getCol()-1);
+            if (isValid(loc)){
                 actors.add(loc);
-            }else{
+            }
+	    else{
                 return null;
             }
         }
@@ -102,25 +105,25 @@ public class MedusaCritter extends Critter {
 
 /** 
  * Processes the elements of actors. New actors may be added to empty locations. 
- * Implemented to “eat” (i.e., remove) selected actors that are not rocks or critters. 
+ * Implemented to "eat" (i.e., remove) selected actors that are not rocks or critters. 
  * Override this method in subclasses to process actors in a different way. 
  * Postcondition: (1) The state of all actors in the grid other than this critter and the 
  * elements of actors is unchanged. (2) The location of this critter is unchanged. 
  * @param actors the actors to be processed 
  */ 
-     public void processActors(ArrayList<Actor> actors) { 
-	  Rock r = new Rock();
-	  int dir = getDirection();
+    public void processActors(ArrayList<Actor> actors) { 
+	Rock r = new Rock();
+	int dir = getDirection();
                
-                for (Actor a: actors)
-                        {   if (!(a instanceof Rock) || !(a instanceof Critter)){//Makes sure an actor is not a rock or critter
-                                if (a.getDirection() == (dir - 180) || (a.getDirection() == (dir + 180)))
-                                {
-                                        Location loc = a.getLocation();
-                                        a.removeSelfFromGrid();
-                                        r.putSelfInGrid(getGrid(), loc);
-                                }
-                            }
-                        }
-     } 
+	for (Actor a: actors)
+ {   if (!(a instanceof Rock) || !(a instanceof Critter)){//Makes sure an actor is not a rock or critter
+		    if (a.getDirection() == (dir - 180) || (a.getDirection() == (dir + 180)))
+			{
+			    Location loc = a.getLocation();
+			    a.removeSelfFromGrid();
+			    r.putSelfInGrid(getGrid(), loc);
+			}
+		}
+	    }
+    } 
 }
