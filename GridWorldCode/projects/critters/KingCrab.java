@@ -3,10 +3,12 @@ import info.gridworld.grid.Location;
 import info.gridworld.grid.Grid;
 import info.gridworld.actor.Actor;
 import java.util.ArrayList;
+import java.awt.Color;
 public class KingCrab extends CrabCritter {
 
     public KingCrab() {
-	setColor(Color.CYAN)
+	super();
+	setColor(Color.CYAN);
     }
     /*
       causes each actor it processes to move 1 location further away from it
@@ -27,7 +29,7 @@ public class KingCrab extends CrabCritter {
 	}
     }
 
-    
+    /*
     private boolean moveAwayFromCrab(Actor actor){
 	//need to see how far away the actor is from the crab and if they can move
 	// might be easier/ cleaner with a helper method
