@@ -1,57 +1,59 @@
 /*
-A new type of Critter has appeared on the scene:
+  /*
+  A new type of Critter has appeared on the scene:
 
-MedusaCritter Specs:
--MedusaCritter can turn the actor in front of it into a rock by removing it and spawning a rock object on the location.
--Class MedusaCritter inherits all methods and variables/constants of superclasses Critter and Actor. Below are overwritten methods
+  MedusaCritter Specs:
+  -MedusaCritter can turn the actor in front of it into a rock by removing it and spawning a rock object on the location.
+  -Class MedusaCritter inherits all methods and variables/constants of superclasses Critter and Actor. Below are overwritten methods
 
--processActors(Actor a){//Overwrites processActors() of superclass Critter
-    If the actorâ€™s direction is the direction of the medusaâ€™s + 180 && the actor is directly in front of the medusa (basically, eye contact and one space away), the actor in front will be removed and replaced by a rock UNLESS it is a Critter or Rock
-}
--ArrayList<Actor> getActors(){//Overwrites getActors() of superclass Critter
-    Only obtains critter directly in front for processing. Dependent on direction of MedusaCritter executing code. Returns ArrayList consisting of all objects one space ahead*/
-}
+  -processActors(Actor a){//Overwrites processActors() of superclass Critter
+  If the actorâ€™s direction is the direction of the medusaâ€™s + 180 && the actor is directly in front of the medusa (basically, eye contact and one space away), the actor in front will be removed and replaced by a rock UNLESS it is a Critter or Rock
+  }
+  -ArrayList<Actor> getActors(){//Overwrites getActors() of superclass Critter
+  Only obtains critter directly in front for processing. Dependent on direction of MedusaCritter executing code. Returns ArrayList consisting of all objects one space ahead*/
 
 
- */
-
- public class MedusaCritter extends Critter {
 
  
-     package info.gridworld.actor; 
+ 
+import  info.gridworld.actor; 
      
-     import info.gridworld.grid.Location; 
-     import java.util.ArrayList; 
+import info.gridworld.grid.Location; 
+import java.util.ArrayList; 
+public class MedusaCritter extends Critter {
+
+ 
+
      
-     public ArrayList<E> getNeighbors(Location loc) {
+    public ArrayList<E> getNeighbors(Location loc) {
 	 
-     }
-/** 
- * A Critter is an actor that moves through its world, processing 
- * other actors in some way and then moving to a new location. 
- * Define your own critters by extending this class and overriding any methods of this class except for act. 
- * When you override these methods, be sure to preserve the postconditions. 
- * The implementation of this class is testable on the AP CS A and AB Exams. 
- */ 
- /** 
- * A critter acts by getting a list of other actors, processing that list, getting locations to move to, 
- * selecting one of them, and moving to the selected location. 
- */ 
-     public void act() {
-	 if (getGrid() == null) 
-	     return; 
-	 ArrayList<Actor> actors = getActors(); 
-	 processActors(actors); 
-	 ArrayList<Location> moveLocs = getMoveLocations(); 
-	 Location loc = selectMoveLocation(moveLocs); 
-	 makeMove(loc); 
- } 
+    }
+    /** 
+     * A Critter is an actor that moves through its world, processing 
+     * other actors in some way and then moving to a new location. 
+     * Define your own critters by extending this class and overriding any methods of this class except for act. 
+     * When you override these methods, be sure to preserve the postconditions. 
+     * The implementation of this class is testable on the AP CS A and AB Exams. 
+     */ 
+    /** 
+     * A critter acts by getting a list of other actors, processing that list, getting locations to move to, 
+     * selecting one of them, and moving to the selected location. 
+     */ 
+    public void act() {
+	if (getGrid() == null) 
+	    return; 
+	ArrayList<Actor> actors = getActors(); 
+	processActors(actors); 
+	ArrayList<Location> moveLocs = getMoveLocations(); 
+	Location loc = selectMoveLocation(moveLocs); 
+	makeMove(loc); 
+    } 
  
  
  
- /** 
- * Gets the actors for processing. Implemented to return the actors that occupy neighboring grid locations. 
- * Override this method in subclasses to look elsewhere for actors to process. 
+    /** 
+     * Gets the actors for processing. Implemented to return the actors that occupy neighboring grid locations. 
+     * Override this method in subclasses to look elsewhere for actors to process. 
  * Postcondition: The state of all actors is unchanged. 
  * @return a list of actors that this critter wishes to process 
  */ 
