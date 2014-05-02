@@ -36,7 +36,7 @@ public class QuickCrab extends CrabCritter {
 	}
 	return locs;
     }
-    /**
+    /** not needed, already have since extends CrabCritter
      * @return list of empty locations immediately to the right and to the left
      
      public ArrayList<Location> getMoveLocations()
