@@ -2,7 +2,7 @@ import info.gridworld.actor.Critter;
 import info.gridworld.actor.Actor;
 import java.util.ArrayList;
 import info.gridworld.grid.Location;
-
+import java.awt.Color;
 public class BlusterCritter extends Critter {
     private int c;
 
