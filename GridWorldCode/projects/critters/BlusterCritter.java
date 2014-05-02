@@ -26,6 +26,15 @@ public class BlusterCritter extends Critter {
 	else 
 	    darken();
     }
+    
+      private void brighten(){
+    	Color c = getColor(); //color of itself
+        int red = (int) (c.getRed() * 1.05);
+        int green = (int) (c.getGreen() * 1.05);
+        int blue = (int) (c.getBlue() * 1.05);
+
+        setColor(new Color(red, green, blue)); //sets the color of itself
+    } 
 
     //from Chameleon Critter
      private void darken(){
