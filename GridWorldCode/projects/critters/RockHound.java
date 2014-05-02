@@ -1,3 +1,5 @@
+import info.gridworld.actor.Critter;
+
 public class RockHounds extends Critter{
     public void processActors(ArrayList<Actor> actors){
         for (Actor a : actors){
