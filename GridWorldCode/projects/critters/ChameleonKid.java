@@ -15,7 +15,7 @@ public class ChameleonKid extends ChameleonCritter{
 	return actors;
     }
 
-    /** from CrabCritter
+    /** from Critter, not inherited b/c 2 steps up
      * Finds the valid adjacent locations of this critter in different
      * directions.
      * @param directions - an array of directions (which are relative to the
