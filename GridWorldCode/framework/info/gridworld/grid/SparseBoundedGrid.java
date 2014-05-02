@@ -1,3 +1,5 @@
+//This code compiles without an error, but for some reason, when I try to run this using SparseGridRunner, it doesn't work. I have no idea what causes this problem.
+
 package info.gridworld.grid;
 
 import java.util.ArrayList;
