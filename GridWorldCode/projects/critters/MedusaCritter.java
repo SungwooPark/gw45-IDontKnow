@@ -28,6 +28,7 @@ public class MedusaCritter extends Critter {
     public ArrayList<E> getNeighbors(Location loc) {
 	 
     }
+    //medusa critter extends critter, so if a method is not changed, it does not have to be rewritten
     /** 
      * A Critter is an actor that moves through its world, processing 
      * other actors in some way and then moving to a new location. 
@@ -38,7 +39,7 @@ public class MedusaCritter extends Critter {
     /** 
      * A critter acts by getting a list of other actors, processing that list, getting locations to move to, 
      * selecting one of them, and moving to the selected location. 
-     */ 
+     
     public void act() {
 	if (getGrid() == null) 
 	    return; 
@@ -48,7 +49,7 @@ public class MedusaCritter extends Critter {
 	Location loc = selectMoveLocation(moveLocs); 
 	makeMove(loc); 
     } 
- 
+    */
  
  
     /** 
